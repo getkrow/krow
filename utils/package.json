@@ -1,0 +1,16 @@
+{
+  "name": "@krow/utils",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Orestis Rodriguez <orestis@orestisrodriguez.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "aws-sdk": "^2.610.0"
+  },
+  "dependencies": {
+    "moment": "^2.24.0",
+    "ramda": "^0.26.1",
+    "uuid": "^3.4.0"
+  }
+}

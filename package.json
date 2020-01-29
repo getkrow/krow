@@ -1,7 +1,7 @@
 {
   "name": "@krow/krow",
   "version": "1.0.0",
-  "description": "Krow - Yet another OKR app",
+  "description": "Krow - A different OKR app",
   "main": "index.js",
   "author": "Orestis Rodriguez <orestis@orestisrodriguez.com>",
   "license": "MIT",

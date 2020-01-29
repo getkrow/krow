@@ -1,0 +1,19 @@
+{
+  "name": "@krow/organizations-service",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Orestis Rodriguez <orestis@orestisrodriguez.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "serverless offline start --skipCacheInvalidation"
+  },
+  "devDependencies": {
+    "serverless-dynamodb-local": "^0.2.39",
+    "serverless-offline": "^5.12.1"
+  },
+  "dependencies": {
+    "@hapi/joi": "^17.1.0",
+    "@krow/utils": "1.0.0"
+  }
+}

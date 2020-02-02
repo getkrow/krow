@@ -1,0 +1,99 @@
+service: krow-auth-service
+
+app: krow-auth-service
+org: krowapp
+
+plugins:
+  - serverless-offline
+  - serverless-dynamodb-local
+
+custom:
+  dynamodb:
+    stages:
+      - dev
+    start:
+      port: 8000
+      inMemory: true
+      migrate: true
+      seed: true
+    seed:
+      domain:
+        sources:
+          - table: ${self:provider.environment.TABLE_NAME}
+            sources: [./test/offline/user-seed.json]
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: eu-central-1
+  environment:
+    TABLE_NAME: ${self:service}-${opt:stage, self:provider.stage}
+
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.TABLE_NAME}"
+
+functions:
+  list:
+    handler: lib/user-handlers.list
+    events:
+      - http:
+          path: users
+          method: get
+          cors: true
+
+  get:
+    handler: lib/user-handlers.get
+    events:
+      - http:
+          path: users/{id}
+          method: get
+          cors: true
+
+  create:
+    handler: lib/user-handlers.create
+    events:
+      - http:
+          path: users
+          method: post
+          cors: true
+
+  update:
+    handler: lib/user-handlers.update
+    events:
+      - http:
+          path: users/{id}
+          method: put
+          cors: true
+
+  delete:
+    handler: lib/user-handlers.delete
+    events:
+      - http:
+          path: users/{id}
+          method: delete
+          cors: true
+
+resources:
+  Resources:
+    organizationsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.TABLE_NAME}
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1

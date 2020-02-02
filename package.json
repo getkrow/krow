@@ -6,9 +6,14 @@
   "author": "Orestis Rodriguez <orestis@orestisrodriguez.com>",
   "license": "MIT",
   "private": true,
-  "workspaces": [
-    "organizations",
-    "utils"
-  ],
+  "workspaces": {
+    "packages": [
+      "organizations",
+      "utils"
+    ],
+    "nohoist": [
+      "**"
+    ]
+  },
   "devDependencies": {}
 }

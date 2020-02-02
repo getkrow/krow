@@ -1,6 +1,6 @@
 service: krow-organizations-service
 
-app: krow-organizations-service
+app: krow
 org: krowapp
 
 plugins:

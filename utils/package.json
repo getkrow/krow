@@ -4,7 +4,6 @@
   "main": "index.js",
   "author": "Orestis Rodriguez <orestis@orestisrodriguez.com>",
   "license": "MIT",
-  "private": true,
   "devDependencies": {
     "aws-sdk": "^2.610.0"
   },

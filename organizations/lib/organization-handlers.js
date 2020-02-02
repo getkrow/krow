@@ -28,9 +28,9 @@ module.exports.list = async (event, context) => {
 }
 
 module.exports.create = async (event, context) => {
-  const { name } = parseEvent(event).body
+  const { body } = parseEvent(event)
 
-  const { error } = schemas.create.validate({ name })
+  const { error } = schemas.create.validate(body)
 
   if (error) return createResponse(400, { error: error.message })
 

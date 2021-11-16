@@ -5,7 +5,7 @@
   "author": "Orestis Rodriguez <orestis@orestisrodriguez.com>",
   "license": "MIT",
   "devDependencies": {
-    "aws-sdk": "^2.610.0"
+    "aws-sdk": "^2.814.0"
   },
   "dependencies": {
     "moment": "^2.24.0",
